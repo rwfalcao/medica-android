@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Medicame</string>
+
+    <string name="facebook_app_id">1012960682175333</string>
+    <string name="fb_login_protocol_scheme">fb1012960682175333</string>
+
+</resources>
