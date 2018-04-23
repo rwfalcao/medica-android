@@ -1,12 +1,27 @@
 package com.example.android.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Medication {
+    @SerializedName("produto")
     private String nome;
+
+    @SerializedName("principioAtivo")
     private String pAtivo;
+
+    @SerializedName("laboratorio")
     private String lab;
+
+    @SerializedName("apresentacao")
     private String desc;
+
+    @SerializedName("classeTerapeutica")
     private String tClass;
+
+    @SerializedName("restricao")
     private String resctric;
+
+    @SerializedName("pmc0")
     private double preco;
 
     public Medication(String nome, String pAtivo, String lab, String desc, String tClass, String resctric, double preco) {
