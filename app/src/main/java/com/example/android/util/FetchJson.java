@@ -1,4 +1,4 @@
-package otherClasses;
+package com.example.android.util;
 
 import android.os.AsyncTask;
 
@@ -9,7 +9,7 @@ import java.net.URL;
  * Created by 1712130027 on 19/04/2018.
  */
 
-public class fetchJson extends AsyncTask<Void,Void,Void> {
+public class FetchJson extends AsyncTask<Void,Void,Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {

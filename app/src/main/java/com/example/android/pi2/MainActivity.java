@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                //login();
+                login_force();
             }
         });
 
@@ -281,6 +282,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void login_force(){
+        Intent it = new Intent(MainActivity.this, Redirect.class);
+        startActivity(it);
     }
 
 
