@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MedicationSearch extends AppCompatActivity {
 
     Button medSearchBtn;
-    Button filterBtn;
+
     EditText filterText;
     TextView jsonContent;
     RecyclerView medRecView;
@@ -45,7 +45,7 @@ public class MedicationSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_search);
 
-        filterBtn = findViewById(R.id.filterBtn);
+
         filterText = findViewById(R.id.filterText);
 
         medList = new ArrayList<>();
@@ -184,13 +184,6 @@ public class MedicationSearch extends AppCompatActivity {
         });
         /*PENSAR NISSO*/
 
-        filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                medList.remove(medList.size() - 1);
-                medAdapter = new MedicationAdapter(MedicationSearch.this, medList);
-                medRecView.setAdapter(medAdapter);
-            }
-        });
+        
     }
 }
