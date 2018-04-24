@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //login();
-                login_force();
+                login();
+                //login_force();
             }
         });
 

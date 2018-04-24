@@ -10,6 +10,6 @@ import retrofit2.http.GET;
 public interface Api {
     String BASE_URL = "http://mobile-aceite.tcu.gov.br/mapa-da-saude/";
 
-    @GET("rest/remedios?quantidade=300")
+    @GET("rest/remedios?quantidade=10000")
     Call<List<Medication>> getMeds();
 }

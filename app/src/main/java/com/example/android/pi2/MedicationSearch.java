@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -88,8 +90,38 @@ public class MedicationSearch extends AppCompatActivity {
                 medAdapter = new MedicationAdapter(MedicationSearch.this, medList);
                 medRecView.setAdapter(medAdapter);
 
+                filterText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        String query = filterText.getText().toString();
+
+                        List<Medication> tempList = new ArrayList<>();
+
+                        for(Medication tempMed:medList){
+                            if(tempMed.getNome().toLowerCase().contains(query.toLowerCase())){
+                                tempList.add(tempMed);
+                            }else if(query.matches("")){
+                                tempList = medList;
+                            }
+                        }
+
+                        medAdapter = new MedicationAdapter(MedicationSearch.this, tempList);
+                        medRecView.setAdapter(medAdapter);
+                    }
+                });
+
                 /*PENSAR NISSO*/
-                filterText.setOnKeyListener(new View.OnKeyListener() {
+                /*filterText.setOnKeyListener(new View.OnKeyListener() {
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         String query = filterText.getText().toString();
@@ -110,7 +142,7 @@ public class MedicationSearch extends AppCompatActivity {
 
                         return false;
                     }
-                });
+                });*/
                 /*PENSAR NISSO*/
             }
 
