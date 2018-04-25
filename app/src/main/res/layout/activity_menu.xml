@@ -17,19 +17,24 @@
 
     <ImageButton
         android:id="@+id/menu_pill"
-        android:layout_width="82dp"
-        android:layout_height="83dp"
-        android:layout_alignStart="@+id/medicaLogo"
-        android:layout_centerVertical="true"
+        android:layout_width="102dp"
+        android:layout_height="90dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/menu_board"
+        android:layout_marginStart="18dp"
         android:padding="20dp"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/pill_redpng" />
 
     <ImageButton
         android:id="@+id/menu_board"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_width="102dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="164dp"
         android:padding="20dp"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/board2" />
 
     <ImageButton
@@ -37,9 +42,10 @@
         android:layout_width="102dp"
         android:layout_height="90dp"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="14dp"
+        android:layout_alignTop="@+id/menu_pill"
+        android:layout_marginEnd="18dp"
         android:padding="20dp"
+        android:scaleType="centerInside"
         app:srcCompat="@drawable/box2" />
 
     <Button
