@@ -45,7 +45,7 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    startActivity(new Intent(Cadastro.this, MainActivity.class));
+                    startActivity(new Intent(Cadastro.this, MenuActivity.class));
                 }
             }
         });

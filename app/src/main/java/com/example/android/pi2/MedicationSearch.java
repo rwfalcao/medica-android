@@ -170,20 +170,8 @@ public class MedicationSearch extends AppCompatActivity {
         });*/
 
 
-        /*PENSAR NISSO*/
-        filterText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                String query = filterText.getText().toString();
-
-                List<Medication> tempList = new ArrayList<>();
+  
 
 
-                return false;
-            }
-        });
-        /*PENSAR NISSO*/
-
-        
     }
 }

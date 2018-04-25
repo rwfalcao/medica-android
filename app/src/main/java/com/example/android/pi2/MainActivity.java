@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private CallbackManager mCallbackManager;
     private static final String facebookTAG = "FACELOG";
     private Button mFacebookBtn;
+    Button btnLostp;
 
 
     @Override
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser) {
         Toast.makeText(MainActivity.this,"You're logged in.", Toast.LENGTH_LONG).show();
 
-        Intent accountIntent = new Intent(MainActivity.this,Redirect.class);
+        Intent accountIntent = new Intent(MainActivity.this,MenuActivity.class);
         startActivity(accountIntent);
         finish();
     }
@@ -87,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 login();
                 //login_force();
+            }
+        });
+
+
+        btnLostp = findViewById(R.id.btnForgot);
+        btnLostp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Retrive.class));
             }
         });
 
@@ -116,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null){
-                    startActivity(new Intent(MainActivity.this, Redirect.class));
+                    startActivity(new Intent(MainActivity.this, MenuActivity.class));
                 }
             }
         };
@@ -146,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         // [END initialize_auth]
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
-            Intent it = new Intent(MainActivity.this, Redirect.class);
+            Intent it = new Intent(MainActivity.this, MenuActivity.class);
             startActivity(it);
             finish();
         }
@@ -274,10 +284,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent it = new Intent(MainActivity.this, Redirect.class);
+                    Intent it = new Intent(MainActivity.this, MenuActivity.class);
                     startActivity(it);
                 } else {
-                    Toast.makeText(MainActivity.this, "Email ou senha invpalidos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Email ou senha inválidos", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -285,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login_force(){
-        Intent it = new Intent(MainActivity.this, Redirect.class);
+        Intent it = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(it);
     }
 
