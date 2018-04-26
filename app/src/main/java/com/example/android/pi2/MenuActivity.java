@@ -15,9 +15,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MenuActivity extends AppCompatActivity {
 
-    ImageButton meds;
-    ImageButton rotinas;
-    ImageButton users;
+    ImageView meds;
+    ImageView rotinas;
+    ImageView users;
     Button btnLogoff;
 
     FirebaseDatabase database;
@@ -49,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
         users.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this, Redirect.class));
+                startActivity(new Intent(MenuActivity.this, CadastroUser.class));
             }
         });
 
