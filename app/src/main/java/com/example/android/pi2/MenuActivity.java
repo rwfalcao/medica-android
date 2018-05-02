@@ -49,14 +49,14 @@ public class MenuActivity extends AppCompatActivity {
         users.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuActivity.this, CadastroUser.class));
+                startActivity(new Intent(MenuActivity.this, UserMenuActivity.class));
             }
         });
 
         rotinas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MenuActivity.this, "Não implementado!", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MenuActivity.this, MedSchedule.class));
             }
         });
 

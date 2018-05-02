@@ -47,7 +47,11 @@
         <activity android:name=".Redirect" />
         <activity android:name=".MedicationSearch" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".CadastroUser"></activity>
+        <activity android:name=".CadastroUser" />
+        <activity android:name=".MedSchedule" />
+        <activity android:name=".UserMenuActivity" />
+        <activity android:name=".CadastroDependente" />
+        <activity android:name=".ChooseUser"></activity>
     </application>
 
 </manifest>

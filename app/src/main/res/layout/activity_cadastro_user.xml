@@ -91,7 +91,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="209dp"
         android:layout_toEndOf="@+id/radioGroup"
-        android:text="Hora Acorda"
+        android:text="Hora Dorme"
         tools:layout_editor_absoluteX="70dp"
         tools:layout_editor_absoluteY="282dp" />
 
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/userAcorda"
         android:layout_alignTop="@+id/textView11"
-        android:text="Hora Dorme"
+        android:text="Hora Acorda"
         tools:layout_editor_absoluteX="219dp"
         tools:layout_editor_absoluteY="282dp" />
 </RelativeLayout>

@@ -16,6 +16,8 @@ public class User {
         this.horaDorme = horaDorme;
     }
 
+    public User(){}
+
     public String getNome() {
         return nome;
     }
