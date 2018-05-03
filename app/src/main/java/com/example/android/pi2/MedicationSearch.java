@@ -108,7 +108,7 @@ public class MedicationSearch extends AppCompatActivity {
                         List<Medication> tempList = new ArrayList<>();
 
                         for(Medication tempMed:medList){
-                            if(tempMed.getNome().toLowerCase().contains(query.toLowerCase())){
+                            if(tempMed.getNome().toLowerCase().startsWith(query.toLowerCase())){
                                 tempList.add(tempMed);
                             }else if(query.matches("")){
                                 tempList = medList;

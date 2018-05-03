@@ -103,7 +103,7 @@ public class CadastroUser extends AppCompatActivity {
                         public void onTimeSet(TimePicker timePicker, int i, int i1) {
                             String hora = String.format("%02d", i);
                             String minuto = String.format("%02d", i1);
-                            acorda.setText(hora + " : " + minuto);
+                            acorda.setText(hora + ":" + minuto);
                         }
                     }, 0, 0, true);
 
@@ -121,7 +121,7 @@ public class CadastroUser extends AppCompatActivity {
                         public void onTimeSet(TimePicker timePicker, int i, int i1) {
                             String hora = String.format("%02d", i);
                             String minuto = String.format("%02d", i1);
-                            dorme.setText(hora + " : " + minuto);
+                            dorme.setText(hora + ":" + minuto);
                         }
                     }, 0,0, true);
 

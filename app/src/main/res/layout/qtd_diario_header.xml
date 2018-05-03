@@ -5,8 +5,16 @@
     
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="Quantidade diária"
-        android:id="@+id/qtdHeader"/>
+        android:id="@+id/qtdHeader"
+        android:paddingTop="2dp"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:background="#572929"
+        android:textColor="@color/light_text"
+
+
+        />
 
 </android.support.constraint.ConstraintLayout>
