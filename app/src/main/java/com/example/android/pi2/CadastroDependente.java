@@ -157,6 +157,6 @@ public class CadastroDependente extends AppCompatActivity {
         DatabaseReference depenentes = database.getReference("/Users/"+uid+"/Dependentes");
 
         User user_insert = new User(nome, sobrenome, sexo, hrAcorda, hrDorme);
-        depenentes.child(Integer.toString(new IdControl().returnId())).setValue(user_insert);
+        depenentes.child(user_insert.returnAndSaveId(depenentes.push().getKey())).setValue(user_insert);
     }
 }

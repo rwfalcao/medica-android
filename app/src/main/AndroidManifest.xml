@@ -51,7 +51,8 @@
         <activity android:name=".MedSchedule" />
         <activity android:name=".UserMenuActivity" />
         <activity android:name=".CadastroDependente" />
-        <activity android:name=".ChooseUser"></activity>
+        <activity android:name=".ChooseUser" />
+        <activity android:name=".ConfirmaScheduleActivity"></activity>
     </application>
 
 </manifest>

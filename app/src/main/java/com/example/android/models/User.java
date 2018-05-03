@@ -6,6 +6,7 @@ public class User {
     private String sexo;
     private String horaAcorda;
     private String horaDorme;
+    private String userId;
 
 
     public User(String nome, String sobrenome, String sexo, String horaAcorda, String horaDorme) {
@@ -36,5 +37,12 @@ public class User {
 
     public String getHoraDorme() {
         return horaDorme;
+    }
+
+    public String getUserId() {return userId; }
+
+    public String returnAndSaveId(String id){
+        this.userId = id;
+        return this.userId;
     }
 }
