@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.android.models.User;
 import com.example.android.pi2.ConfirmaScheduleActivity;
 import com.example.android.pi2.R;
+import com.example.android.pi2.ScheduleMedicationActivity;
 
 import java.util.List;
 
@@ -50,8 +51,10 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
             public void onClick(View view) {
                 Toast.makeText(mCtx, listUsers.get(position).getUserId(), Toast.LENGTH_SHORT).show();
 
-                Intent it = new Intent(mCtx, ConfirmaScheduleActivity.class);
+                Intent it = new Intent(mCtx, ScheduleMedicationActivity.class);
                 it.putExtra("userId", listUsers.get(position).getUserId());
+                it.putExtra("userName", listUsers.get(position).getNome());
+                it.putExtra("userLastName", listUsers.get(position).getSobrenome());
                 mCtx.startActivity(it);
             }
         });

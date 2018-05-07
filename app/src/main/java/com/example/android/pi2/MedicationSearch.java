@@ -87,7 +87,7 @@ public class MedicationSearch extends AppCompatActivity {
                     double medPreco = med.getPreco();
                     medList.add(new Medication(med.getNome(), med.getpAtivo(), med.getLab(), med.getDesc(), med.gettClass(), med.getResctric(), med.getPreco()));
                 }
-                medAdapter = new MedicationAdapter(MedicationSearch.this, medList);
+                medAdapter = new MedicationAdapter(MedicationSearch.this, medList, getIntent());
                 medRecView.setAdapter(medAdapter);
 
                 filterText.addTextChangedListener(new TextWatcher() {
@@ -115,7 +115,7 @@ public class MedicationSearch extends AppCompatActivity {
                             }
                         }
 
-                        medAdapter = new MedicationAdapter(MedicationSearch.this, tempList);
+                        medAdapter = new MedicationAdapter(MedicationSearch.this, tempList, getIntent());
                         medRecView.setAdapter(medAdapter);
                     }
                 });

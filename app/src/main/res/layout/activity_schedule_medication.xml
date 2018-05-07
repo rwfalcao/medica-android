@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfirmaScheduleActivity">
+
+    <EditText
+        android:id="@+id/ChoosefilterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="Medicamento"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="146dp"
+        android:layout_marginBottom="100dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/scheduleMedicationSearch"
+        android:layout_width="362dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/ChoosefilterText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp"
+        tools:layout_editor_absoluteX="11dp"
+        tools:layout_editor_absoluteY="192dp" />
+
+
+
+
+</RelativeLayout>
