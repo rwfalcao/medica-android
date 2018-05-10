@@ -56,14 +56,23 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
                 Intent it = new Intent(mCtx, ConfirmaScheduleActivity.class);
                 it.putExtra("medName", med.getNome());
                 it.putExtra("ativo", med.getpAtivo());
+                it.putExtra("lab", med.getLab());
                 it.putExtra("desc", med.getDesc());
-                it.putExtra("preco", med.getPreco());
+                it.putExtra("tClass", med.gettClass());
+                it.putExtra("restric", med.getResctric());
+                it.putExtra("preco", String.valueOf(med.getPreco()));
+
 
                 it.putExtra("userId", medIntent.getStringExtra("userId"));
                 it.putExtra("userName", medIntent.getStringExtra("userName"));
                 it.putExtra("userLastName", medIntent.getStringExtra("userLastName"));
+                it.putExtra("hrAcorda", medIntent.getStringExtra("hrAcorda"));
+                it.putExtra("hrDorme", medIntent.getStringExtra("hrDorme"));
+
 
                 mCtx.startActivity(it);
+
+
 
             }
         });

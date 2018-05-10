@@ -55,6 +55,8 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
                 it.putExtra("userId", listUsers.get(position).getUserId());
                 it.putExtra("userName", listUsers.get(position).getNome());
                 it.putExtra("userLastName", listUsers.get(position).getSobrenome());
+                it.putExtra("hrAcorda", listUsers.get(position).getHoraAcorda());
+                it.putExtra("hrDorme", listUsers.get(position).getHoraDorme());
                 mCtx.startActivity(it);
             }
         });
