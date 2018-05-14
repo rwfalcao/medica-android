@@ -1,5 +1,6 @@
 package com.example.android.pi2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -167,6 +168,10 @@ public class ConfirmaScheduleActivity extends AppCompatActivity {
 
         rotinasRef.child(rotinaId).child("Medicamento").setValue(med);
 
+        rotinasRef.child(rotinaId).child("Frequencia").setValue(qtdDoses);
+
         rotinasRef.child(rotinaId).child("Horários").setValue(timeList);
+
+        startActivity(new Intent(ConfirmaScheduleActivity.this, MedSchedule.class));
     }
 }

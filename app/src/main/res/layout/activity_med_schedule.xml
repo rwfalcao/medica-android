@@ -36,11 +36,10 @@
         android:layout_marginEnd="41dp"
         android:text="Nova Rotina" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/schedFrag"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RecViewRotinas"
         android:layout_width="match_parent"
-        android:layout_height="417dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

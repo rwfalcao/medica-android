@@ -3,6 +3,8 @@ package com.example.android.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.StrictMath.abs;
+
 /**
  * Created by 1712130027 on 10/05/2018.
  */
@@ -15,7 +17,7 @@ public class BasicTime{
     public BasicTime(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
-        this.formatedTime = hour+":"+minute;
+        this.formatedTime = String.format("%02d", hour)+":"+String.format("%02d", minute);
     }
 
     public int getHour() {
@@ -36,16 +38,18 @@ public class BasicTime{
 
         int time1Minutes = time1.getHour()*60 + time1.getMinute() + 20;
         int time2Minutes = time2.getHour()*60 + time2.getMinute() - 20;
-        int minuteDif =  time1Minutes - time2Minutes;
+        int minuteDif =  abs(time1Minutes - time2Minutes);
 
-        int minuteInterval = minuteDif / interval; //menos vinte minutes antes e depois de acordar
+        int minuteInterval = minuteDif / (interval - 1); //
 
         List<BasicTime> separatedTimes = new ArrayList<>();
 
+        separatedTimes.add(new BasicTime(time1Minutes / 60, time1Minutes % 60));
+
         /*CHECAR ESSA LÓGICA*/
-        for(int i = 0 ; i < interval ; i++){
+        for(int i = 1 ; i < interval ; i++){
             int timeInMintes = time1Minutes + i*minuteInterval;
-            separatedTimes.add(new BasicTime(timeInMintes / 60, timeInMintes % 5));
+            separatedTimes.add(new BasicTime(timeInMintes / 60, timeInMintes % 60));
         }
         /*CHECAR ESSA LÓGICA*/
 

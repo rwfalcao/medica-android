@@ -54,6 +54,10 @@
         <activity android:name=".ChooseUser" />
         <activity android:name=".ConfirmaScheduleActivity" />
         <activity android:name=".ScheduleMedicationActivity"></activity>
+
+        <receiver android:name="com.example.android.models.Alarm"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
