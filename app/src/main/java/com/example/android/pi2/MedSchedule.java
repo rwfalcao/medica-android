@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.android.adapters.ScheduleAdapter;
 import com.example.android.adapters.UserAdapter;
 import com.example.android.models.Alarm;
+import com.example.android.models.BasicTime;
 import com.example.android.models.Medication;
 import com.example.android.models.Schedule;
 import com.example.android.models.User;
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,10 +84,6 @@ public class MedSchedule extends AppCompatActivity {
 
 
 
-
-        adapter = new ScheduleAdapter(this, listSched);
-        RecViewSched.setAdapter(adapter);
-
         novaRotina = findViewById(R.id.btnNovaRotina);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -102,14 +100,43 @@ public class MedSchedule extends AppCompatActivity {
                     for(DataSnapshot schedSnapshot : ds.child("Rotinas").getChildren()){
 
                         String freq = (String) schedSnapshot.child("Frequencia").getValue();
+
+                        List<BasicTime> listBT = new ArrayList<>();
+
+                        for(DataSnapshot hrSnapshot : schedSnapshot.child("Horários").getChildren()){
+                            String t1 = (String) hrSnapshot.child("formatedTime").getValue();
+                            BasicTime bt1 = BasicTime.stringToBasicTime(t1);
+                            listBT.add(bt1);
+
+
+                        }
+
                         List hrList = (List) schedSnapshot.child("Horários").getValue();
-                        Medication med = schedSnapshot.child("Medicamento").getValue(Medication.class);
+                       // HashMap<String, String> hm = (HashMap<String, String>) hrList.get(0);
+                        //String formatedTime = hm.get("formatedTime");
+
+                       String medname = (String) schedSnapshot.child("Medication").child("nome").getValue();
+                       String meddesc = (String) schedSnapshot.child("Medication").child("desc").getValue();
+                       String medlab = (String) schedSnapshot.child("Medication").child("lab").getValue();
+                       String medativo = (String) schedSnapshot.child("Medication").child("pAtivo").getValue();
+                       String medpreco = schedSnapshot.child("Medication").child("preco").getValue().toString();
+                       String medrestrict = (String) schedSnapshot.child("Medication").child("resctric").getValue();
+                       String medClass = (String) schedSnapshot.child("Medication").child("tClass").getValue();
+
+                       Medication med = new Medication(medname, medativo, medlab, meddesc, medClass, medrestrict, Double.parseDouble(medpreco));
 
 
 
-                        listSched.add(new Schedule(med,hrList, user, String.valueOf(freq)));
+
+
+                        listSched.add(new Schedule(med, listBT, user, freq));
+
+                        int x  = 0;
+                        //listSched.add(new Schedule(med,hrList, user, String.valueOf(freq)));
                     }
                 }
+                adapter = new ScheduleAdapter(MedSchedule.this, listSched);
+                RecViewSched.setAdapter(adapter);
 
             }
 
@@ -118,6 +145,10 @@ public class MedSchedule extends AppCompatActivity {
 
             }
         });
+
+
+        adapter = new ScheduleAdapter(this, listSched);
+        RecViewSched.setAdapter(adapter);
 
 
         novaRotina.setOnClickListener(new View.OnClickListener() {

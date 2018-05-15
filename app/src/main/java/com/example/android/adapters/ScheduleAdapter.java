@@ -38,7 +38,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
         holder.username.setText(sched.getUser().getNome());
         holder.medname.setText(sched.getMed().getNome());
-        holder.freq.setText(String.valueOf(sched.getFreq()));
+        holder.freq.setText(String.valueOf(sched.getFreq()+" vezes por dia"));
 
         holder.rotinaImg.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.clock_icon));
     }

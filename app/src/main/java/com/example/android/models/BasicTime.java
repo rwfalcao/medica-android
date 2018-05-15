@@ -20,6 +20,7 @@ public class BasicTime{
         this.formatedTime = String.format("%02d", hour)+":"+String.format("%02d", minute);
     }
 
+
     public int getHour() {
         return hour;
     }

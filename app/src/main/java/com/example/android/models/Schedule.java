@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Schedule {
     Medication med;
-    List<String> horarios;
+    List<BasicTime> horarios;
     User user;
     String freq;
 
-    public Schedule(Medication med, List<String> horarios, User user, String freq) {
+    public Schedule(Medication med, List<BasicTime> horarios, User user, String freq) {
         this.med = med;
         this.horarios = horarios;
         this.user = user;
@@ -19,7 +19,7 @@ public class Schedule {
         return med;
     }
 
-    public List<String> getHorarios() {
+    public List<BasicTime> getHorarios() {
         return horarios;
     }
 

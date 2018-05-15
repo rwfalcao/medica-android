@@ -166,7 +166,7 @@ public class ConfirmaScheduleActivity extends AppCompatActivity {
 
         String rotinaId = rotinasRef.push().getKey();
 
-        rotinasRef.child(rotinaId).child("Medicamento").setValue(med);
+        rotinasRef.child(rotinaId).child("Medication").setValue(med);
 
         rotinasRef.child(rotinaId).child("Frequencia").setValue(qtdDoses);
 
