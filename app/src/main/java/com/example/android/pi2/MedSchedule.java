@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -138,6 +140,34 @@ public class MedSchedule extends AppCompatActivity {
                 adapter = new ScheduleAdapter(MedSchedule.this, listSched);
                 RecViewSched.setAdapter(adapter);
 
+
+                for(Schedule sc : listSched){
+                    for(BasicTime bt : sc.getHorarios()){
+                        setAlarm(getIngestionTimes(bt.getHour(), bt.getMinute()), sc);
+                    }
+                }
+
+                /*TESTES*/
+
+                User user1 = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
+
+                Medication med1 = new Medication("CANCIDAS", "ACETATO DE CASPOFUNGINA", "ERCK SHARP & DOHME FARMACEUTICA  LTDA", "70 MG PO LIOF SOL INJ CT FA VD INC", "L02A3 - ANÁLOGOS HORMONA…DOTROFINAS CITOSTÁTICOS", "Não", 4247.26);
+
+                List<BasicTime> hrs = new ArrayList<>();
+                hrs.add(new BasicTime(7, 50));
+
+                Schedule sce = new Schedule(med1, hrs, user1, "4");
+
+                Calendar test = Calendar.getInstance();
+
+                test.add(Calendar.SECOND, 10);
+
+
+                setAlarm(test, sce);
+
+
+                /*TESTES*/
+
             }
 
             @Override
@@ -159,6 +189,8 @@ public class MedSchedule extends AppCompatActivity {
         });
 
 
+
+
     }
 
     public Calendar getIngestionTimes(int hour, int minute){
@@ -175,16 +207,20 @@ public class MedSchedule extends AppCompatActivity {
         return calendar;
     }
 
-    private void setAlarm(Calendar cal){
+    private void setAlarm(Calendar cal, Schedule s){
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent it = new Intent(this, Alarm.class);
+        it.putExtra("username", s.getUser().getNome());
+        it.putExtra("medname", s.getMed().getNome());
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, it, 0);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmManager.INTERVAL_DAY, pendingIntent);
 
-        Toast.makeText(this, "Alarme salvo", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE), Toast.LENGTH_LONG).show();
+
+        Log.d("QuickNotesMainActivity", cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE));
     }
 
 
