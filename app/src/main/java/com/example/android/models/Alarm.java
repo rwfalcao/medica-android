@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
@@ -42,6 +43,15 @@ public class Alarm extends BroadcastReceiver{
     }
 
     public void sendIngestNotification(Context context, String username, String medname){
+
+        Intent ingestIntent = new Intent(context, IngestionActivity.class);
+
+        ingestIntent.putExtra("username", username);
+        ingestIntent.putExtra("medname", medname);
+
+        PendingIntent IngestPIntent = PendingIntent.getActivity(context,
+                0, ingestIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.meds_icon)
                 .setContentTitle(username)
@@ -49,7 +59,11 @@ public class Alarm extends BroadcastReceiver{
                 .setContentText(medname)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
+                .setColor(Color.RED)
                 .setOngoing(true)
+                .setContentIntent(IngestPIntent)
+                .setAutoCancel(true)
+
                 .build();
 
         notificationManager.notify(1, notification);

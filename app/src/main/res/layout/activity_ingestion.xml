@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".IngestionActivity">
 
+    <TextView
+        android:id="@+id/ingestUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="38dp" />
 </android.support.constraint.ConstraintLayout>
