@@ -65,6 +65,7 @@ public class MedSchedule extends AppCompatActivity {
 
 
         /*DADOS DE TESTE*/
+        /*
 
         User user1 = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
         User user2 = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
@@ -76,6 +77,8 @@ public class MedSchedule extends AppCompatActivity {
         hrs.add("07:00");
         hrs.add("17:00");
         hrs.add("22:00");
+
+        */
 
         //listSched.add(new Schedule(med1,hrs, 4));
        // listSched.add(new Schedule(med2,hrs , 4));
@@ -100,6 +103,8 @@ public class MedSchedule extends AppCompatActivity {
                     User user = ds.getValue(User.class);
 
                     for(DataSnapshot schedSnapshot : ds.child("Rotinas").getChildren()){
+
+                        String sr = schedSnapshot.getKey();
 
                         String freq = (String) schedSnapshot.child("Frequencia").getValue();
 
@@ -127,14 +132,13 @@ public class MedSchedule extends AppCompatActivity {
 
                        Medication med = new Medication(medname, medativo, medlab, meddesc, medClass, medrestrict, Double.parseDouble(medpreco));
 
+                       Schedule rotina = new Schedule(med, listBT, user, freq);
+                       rotina.setSchedId(sr);
 
+                       listSched.add(rotina);
 
-
-
-                        listSched.add(new Schedule(med, listBT, user, freq));
-
-                        int x  = 0;
-                        //listSched.add(new Schedule(med,hrList, user, String.valueOf(freq)));
+                       int x  = 0;
+                       //listSched.add(new Schedule(med,hrList, user, String.valueOf(freq)));
                     }
                 }
                 adapter = new ScheduleAdapter(MedSchedule.this, listSched);
@@ -149,18 +153,18 @@ public class MedSchedule extends AppCompatActivity {
 
                 /*TESTES*/
 
-                User user1 = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
+                User user_teste = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
 
-                Medication med1 = new Medication("CANCIDAS", "ACETATO DE CASPOFUNGINA", "ERCK SHARP & DOHME FARMACEUTICA  LTDA", "70 MG PO LIOF SOL INJ CT FA VD INC", "L02A3 - ANÁLOGOS HORMONA…DOTROFINAS CITOSTÁTICOS", "Não", 4247.26);
+                Medication med1 = new Medication("CANCIDA", "ACETATO DE CASPOFUNGINA", "ERCK SHARP & DOHME FARMACEUTICA  LTDA", "70 MG PO LIOF SOL INJ CT FA VD INC", "L02A3 - ANÁLOGOS HORMONA…DOTROFINAS CITOSTÁTICOS", "Não", 4247.26);
 
                 List<BasicTime> hrs = new ArrayList<>();
                 hrs.add(new BasicTime(7, 50));
 
-                Schedule sce = new Schedule(med1, hrs, user1, "4");
+                Schedule sce = new Schedule(med1, hrs, user_teste, "4");
 
                 Calendar test = Calendar.getInstance();
 
-                test.add(Calendar.SECOND, 10);
+                test.add(Calendar.SECOND, 2);
 
 
                 setAlarm(test, sce);
@@ -212,13 +216,15 @@ public class MedSchedule extends AppCompatActivity {
 
         Intent it = new Intent(this, Alarm.class);
         it.putExtra("username", s.getUser().getNome());
+        it.putExtra("userid", s.getUser().getUserId());
         it.putExtra("medname", s.getMed().getNome());
+        it.putExtra("schedId", s.getSchedId());
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, it, 0);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmManager.INTERVAL_DAY, pendingIntent);
 
-        Toast.makeText(this, cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE), Toast.LENGTH_LONG).show();
 
         Log.d("QuickNotesMainActivity", cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE));
     }

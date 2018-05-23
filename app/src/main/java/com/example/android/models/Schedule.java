@@ -7,6 +7,7 @@ public class Schedule {
     List<BasicTime> horarios;
     User user;
     String freq;
+    String schedId;
 
     public Schedule(Medication med, List<BasicTime> horarios, User user, String freq) {
         this.med = med;
@@ -30,4 +31,13 @@ public class Schedule {
     public String getFreq() {
         return freq;
     }
+
+    public String getSchedId() {
+        return schedId;
+    }
+
+    public void setSchedId(String schedId) {
+        this.schedId = schedId;
+    }
+
 }

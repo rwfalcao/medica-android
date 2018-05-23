@@ -25,7 +25,7 @@ import static com.example.android.pi2.NotificationApplication.CHANNEL_1_ID;
 public class Alarm extends BroadcastReceiver{
 
     String username;
-    String medname;
+    String medname, userid, schedId;
     NotificationManagerCompat notificationManager;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -34,20 +34,23 @@ public class Alarm extends BroadcastReceiver{
 
         username = intent.getStringExtra("username");
         medname = intent.getStringExtra("medname");
+        userid = intent.getStringExtra("userid");
+        schedId = intent.getStringExtra("schedId");
 
 
-
-        sendIngestNotification(context, username, medname);
+        sendIngestNotification(context, username, medname, userid, schedId);
         MediaPlayer mediaplayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
         mediaplayer.start();
     }
 
-    public void sendIngestNotification(Context context, String username, String medname){
+    public void sendIngestNotification(Context context, String username, String medname, String userid, String schedId){
 
         Intent ingestIntent = new Intent(context, IngestionActivity.class);
 
         ingestIntent.putExtra("username", username);
         ingestIntent.putExtra("medname", medname);
+        ingestIntent.putExtra("userid", userid);
+        ingestIntent.putExtra("schedId", schedId);
 
         PendingIntent IngestPIntent = PendingIntent.getActivity(context,
                 0, ingestIntent, PendingIntent.FLAG_UPDATE_CURRENT);

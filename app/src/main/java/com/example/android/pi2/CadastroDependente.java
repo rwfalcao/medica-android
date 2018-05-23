@@ -120,9 +120,9 @@ public class CadastroDependente extends AppCompatActivity {
                 TimePickerDialog picker = new TimePickerDialog(CadastroDependente.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        String hora = String.format("%02d", i);
-                        String minuto = String.format("%02d", i1);
-                        dorme.setText(hora + " : " + minuto);
+                        String hora = String.format("%02d", i).trim();
+                        String minuto = String.format("%02d", i1).trim();
+                        dorme.setText(hora + ":" + minuto);
                     }
                 }, 0,0, true);
 
