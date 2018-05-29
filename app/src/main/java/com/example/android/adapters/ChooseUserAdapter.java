@@ -14,16 +14,15 @@ import android.widget.Toast;
 import com.example.android.models.User;
 import com.example.android.pi2.R;
 import com.example.android.pi2.ScheduleMedicationActivity;
-import com.example.android.pi2.UserStatsActivity;
 
 import java.util.List;
 
-public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class ChooseUserAdapter extends  RecyclerView.Adapter<ChooseUserAdapter.UserViewHolder> {
 
     private Context mCtx;
     private List<User> listUsers;
 
-    public UserAdapter(Context mCtx, List<User> listUsers) {
+    public ChooseUserAdapter(Context mCtx, List<User> listUsers) {
         this.mCtx = mCtx;
         this.listUsers = listUsers;
     }
@@ -45,14 +44,12 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.com_facebook_profile_picture_blank_square));
         holder.id = user.getUserId();
 
-
-
         holder.userParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mCtx, listUsers.get(position).getUserId(), Toast.LENGTH_SHORT).show();
 
-                Intent it = new Intent(mCtx, UserStatsActivity.class);
+                Intent it = new Intent(mCtx, ScheduleMedicationActivity.class);
                 it.putExtra("userId", listUsers.get(position).getUserId());
                 it.putExtra("userName", listUsers.get(position).getNome());
                 it.putExtra("userLastName", listUsers.get(position).getSobrenome());

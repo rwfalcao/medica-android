@@ -69,7 +69,9 @@ public class IngestionActivity extends AppCompatActivity {
                 obs = editObs.getText().toString();
                 Ingestion ingest = new Ingestion(ingestionScore.toString(), ingesttime, ingestDate, obs);
 
-                rotinasRef.child("Ingestoes").setValue(ingest);
+                String rotinaId = rotinasRef.push().getKey();
+
+                rotinasRef.child("Ingestoes").child(rotinaId).setValue(ingest);
 
                 startActivity(new Intent(IngestionActivity.this, MainActivity.class));
 

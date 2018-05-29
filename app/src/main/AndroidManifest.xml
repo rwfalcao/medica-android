@@ -59,11 +59,11 @@
         <receiver
             android:name="com.example.android.models.Alarm"
             android:enabled="true"
-            android:exported="true"
+            android:exported="true" />
 
-            />
-
-        <activity android:name=".IngestionActivity"></activity>
+        <activity android:name=".IngestionActivity" />
+        <activity android:name=".UserStatsActivity" />
+        <activity android:name=".ScheduleStatsActivity"></activity>
     </application>
 
 </manifest>

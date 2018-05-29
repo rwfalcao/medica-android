@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.android.adapters.UserAdapter;
+import com.example.android.adapters.ChooseUserAdapter;
 import com.example.android.models.User;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,7 +20,7 @@ import java.util.List;
 public class ChooseUser extends AppCompatActivity {
 
     RecyclerView listUsersView;
-    UserAdapter adapter;
+    ChooseUserAdapter adapter;
 
     FirebaseDatabase database;
     FirebaseAuth mAuth;
@@ -55,7 +54,7 @@ public class ChooseUser extends AppCompatActivity {
                     User user = ds.getValue(User.class);
                     depList.add(user);
                 }
-                adapter = new UserAdapter(ChooseUser.this, depList);
+                adapter = new ChooseUserAdapter(ChooseUser.this, depList);
                 listUsersView.setAdapter(adapter);
 
             }

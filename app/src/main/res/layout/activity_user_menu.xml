@@ -10,9 +10,9 @@
         android:id="@+id/btnCadPessoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="163dp"
+        android:layout_marginBottom="67dp"
         android:text="Cadastro Pessoal"
         tools:layout_editor_absoluteX="112dp"
         tools:layout_editor_absoluteY="160dp" />
@@ -21,7 +21,9 @@
         android:id="@+id/btnCadDependente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
         android:text="Cadastro Dependente"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="231dp" />
@@ -30,10 +32,8 @@
         android:id="@+id/imageView3"
         android:layout_width="52dp"
         android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="97dp"
-        android:layout_marginTop="42dp"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignStart="@+id/btnCadDependente"
         app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="49dp" />
@@ -42,10 +42,21 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView3"
         android:layout_alignEnd="@+id/btnCadPessoal"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
         android:text="Usuários"
         android:textSize="30sp"
         tools:layout_editor_absoluteX="168dp"
         tools:layout_editor_absoluteY="58dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listUsers"
+        android:layout_width="match_parent"
+        android:layout_height="307dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="123dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="81dp" />
 </RelativeLayout>
