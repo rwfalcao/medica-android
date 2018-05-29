@@ -25,7 +25,7 @@ import static com.example.android.pi2.NotificationApplication.CHANNEL_1_ID;
 public class Alarm extends BroadcastReceiver{
 
     String username;
-    String medname, userid, schedId;
+    String medname, userid, schedId, ingestTime, ingestDate;
     NotificationManagerCompat notificationManager;
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -36,14 +36,16 @@ public class Alarm extends BroadcastReceiver{
         medname = intent.getStringExtra("medname");
         userid = intent.getStringExtra("userid");
         schedId = intent.getStringExtra("schedId");
+        ingestTime = intent.getStringExtra("ingestTime");
+        ingestDate = intent.getStringExtra("ingestDate");
 
 
-        sendIngestNotification(context, username, medname, userid, schedId);
+        sendIngestNotification(context, username, medname, userid, schedId,ingestTime, ingestDate);
         MediaPlayer mediaplayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
         mediaplayer.start();
     }
 
-    public void sendIngestNotification(Context context, String username, String medname, String userid, String schedId){
+    public void sendIngestNotification(Context context, String username, String medname, String userid, String schedId, String ingestTime, String ingestDate){
 
         Intent ingestIntent = new Intent(context, IngestionActivity.class);
 
@@ -51,6 +53,8 @@ public class Alarm extends BroadcastReceiver{
         ingestIntent.putExtra("medname", medname);
         ingestIntent.putExtra("userid", userid);
         ingestIntent.putExtra("schedId", schedId);
+        ingestIntent.putExtra("ingestTime", ingestTime);
+        ingestIntent.putExtra("ingestDate", ingestDate);
 
         PendingIntent IngestPIntent = PendingIntent.getActivity(context,
                 0, ingestIntent, PendingIntent.FLAG_UPDATE_CURRENT);

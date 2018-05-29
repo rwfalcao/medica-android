@@ -40,7 +40,7 @@
         android:textSize="20dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/ingestObs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

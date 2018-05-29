@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -167,6 +168,10 @@ public class MedSchedule extends AppCompatActivity {
                 test.add(Calendar.SECOND, 2);
 
 
+
+
+
+
                 setAlarm(test, sce);
 
 
@@ -214,11 +219,18 @@ public class MedSchedule extends AppCompatActivity {
     private void setAlarm(Calendar cal, Schedule s){
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String ingestDate = sdf.format(cal.getTime());
+
         Intent it = new Intent(this, Alarm.class);
         it.putExtra("username", s.getUser().getNome());
         it.putExtra("userid", s.getUser().getUserId());
         it.putExtra("medname", s.getMed().getNome());
         it.putExtra("schedId", s.getSchedId());
+        it.putExtra("ingestTime", cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE));
+        it.putExtra("ingestDate", ingestDate);
+
+        int tste = Integer.parseInt(String.valueOf(cal.get(Calendar.MONTH)+1));
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, it, 0);
 

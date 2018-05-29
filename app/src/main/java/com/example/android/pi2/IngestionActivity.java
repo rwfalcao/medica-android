@@ -1,14 +1,17 @@
 package com.example.android.pi2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.models.Ingestion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,13 +25,14 @@ public class IngestionActivity extends AppCompatActivity {
     String dependenteId;
     RatingBar ratingBar;
     Button ingestionButton;
+    EditText editObs;
 
     Float ingestionScore;
 
     FirebaseDatabase database;
     FirebaseAuth mAuth;
 
-    String uid, schedId;
+    String uid, schedId, obs, ingesttime, ingestDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +45,15 @@ public class IngestionActivity extends AppCompatActivity {
 
         dependenteId = getIntent().getStringExtra("userid");
 
+        ingesttime = getIntent().getStringExtra("ingestTime");
+        ingestDate = getIntent().getStringExtra("ingestDate");
+
         username = findViewById(R.id.ingestUsername);
         medname = findViewById(R.id.ingestMedname);
         schedId = getIntent().getStringExtra("schedId");
+        editObs = findViewById(R.id.ingestObs);
 
-        DatabaseReference rotinasRef = database.getReference("/Users/"+uid+"/Dependentes/"+dependenteId+"/Rotinas/"+schedId+"/Ingestoes");
+        final DatabaseReference rotinasRef = database.getReference("/Users/"+uid+"/Dependentes/"+dependenteId+"/Rotinas/"+schedId);
 
         username.setText(getIntent().getStringExtra("username"));
         medname.setText(getIntent().getStringExtra("medname"));
@@ -58,8 +66,13 @@ public class IngestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ingestionScore = ratingBar.getRating();
+                obs = editObs.getText().toString();
+                Ingestion ingest = new Ingestion(ingestionScore.toString(), ingesttime, ingestDate, obs);
 
-                Log.d("QuickNotesMainActivity", String.valueOf(ingestionScore));
+                rotinasRef.child("Ingestoes").setValue(ingest);
+
+                startActivity(new Intent(IngestionActivity.this, MainActivity.class));
+
             }
         });
 
