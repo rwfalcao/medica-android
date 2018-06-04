@@ -2,6 +2,7 @@ package com.example.android.pi2;
 
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.android.models.User;
 import com.example.android.util.IdControl;
@@ -158,5 +160,9 @@ public class CadastroDependente extends AppCompatActivity {
 
         User user_insert = new User(nome, sobrenome, sexo, hrAcorda, hrDorme);
         depenentes.child(user_insert.returnAndSaveId(depenentes.push().getKey())).setValue(user_insert);
+
+        Toast.makeText(this, "Usuário inserido com sucesso!", Toast.LENGTH_LONG).show();
+
+        startActivity(new Intent(CadastroDependente.this, MenuActivity.class));
     }
 }

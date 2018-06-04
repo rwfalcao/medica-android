@@ -9,6 +9,12 @@ public class Schedule {
     String freq;
     String schedId;
 
+    public Schedule(Medication med, List<BasicTime> horarios, String freq) {
+        this.med = med;
+        this.horarios = horarios;
+        this.freq = freq;
+    }
+
     public Schedule(Medication med, List<BasicTime> horarios, User user, String freq) {
         this.med = med;
         this.horarios = horarios;

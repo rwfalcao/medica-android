@@ -32,7 +32,7 @@ public class IngestionActivity extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseAuth mAuth;
 
-    String uid, schedId, obs, ingesttime, ingestDate;
+    String uid, schedId, obs, ingesttime, ingestDate, conf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,9 @@ public class IngestionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ingestionScore = ratingBar.getRating();
                 obs = editObs.getText().toString();
-                Ingestion ingest = new Ingestion(ingestionScore.toString(), ingesttime, ingestDate, obs);
+                conf = "1";
+
+                Ingestion ingest = new Ingestion(ingestionScore.toString(), ingesttime, ingestDate, obs, conf);
 
                 String rotinaId = rotinasRef.push().getKey();
 
