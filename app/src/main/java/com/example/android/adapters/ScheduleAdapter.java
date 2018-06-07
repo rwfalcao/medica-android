@@ -52,6 +52,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
 
                 it.putExtra("schedId", schedList.get(position).getSchedId());
                 it.putExtra("userId", schedList.get(position).getUser().getUserId());
+                it.putExtra("username", schedList.get(position).getUser().getNome());
+                it.putExtra("medname", schedList.get(position).getMed().getNome());
 
                 mCtx.startActivity(it);
             }

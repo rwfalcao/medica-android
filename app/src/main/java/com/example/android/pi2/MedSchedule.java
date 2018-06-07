@@ -147,7 +147,6 @@ public class MedSchedule extends AppCompatActivity {
                 }
 
                 /*TESTES*/
-
                 User user_teste = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
 
                 Medication med1 = new Medication("CANCIDA", "ACETATO DE CASPOFUNGINA", "ERCK SHARP & DOHME FARMACEUTICA  LTDA", "70 MG PO LIOF SOL INJ CT FA VD INC", "L02A3 - ANÁLOGOS HORMONA…DOTROFINAS CITOSTÁTICOS", "Não", 4247.26);
