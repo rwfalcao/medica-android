@@ -19,4 +19,24 @@ public class Ingestion {
 
         this.obs = obs;
     }
+
+    public String getScore() {
+        return score;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public String getConf() {
+        return conf;
+    }
 }

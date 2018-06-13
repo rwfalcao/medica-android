@@ -3,15 +3,11 @@ package com.example.android.pi2;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.android.models.BasicDate;
-import com.example.android.models.BasicTime;
 import com.example.android.models.Ingestion;
-import com.example.android.models.Schedule;
-import com.example.android.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,14 +16,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class ScheduleStatsActivity extends AppCompatActivity {
@@ -43,6 +40,8 @@ public class ScheduleStatsActivity extends AppCompatActivity {
     List<Ingestion> ingestList, popList;
 
     List<String> horariosList;
+
+    private static DecimalFormat df2 = new DecimalFormat(".##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,19 +101,13 @@ public class ScheduleStatsActivity extends AppCompatActivity {
                     ingestList.add(ing);
                 }
 
-                if(ingestList.isEmpty()){
+                if(!ingestList.isEmpty()){
                     schedEmtpy.setText("Não há ingestões ainda nesta rotina!");
                     schedEmtpy.setVisibility(View.VISIBLE);
                     graph.setVisibility(View.GONE);
                 }else{
 
-                    BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
-                            new DataPoint(0, 1.5),
-                            new DataPoint(1, 5),
-                            new DataPoint(2, 3),
-                            new DataPoint(3, 2),
-                            new DataPoint(4, 4)
-                    });
+                    BarGraphSeries<DataPoint> series = populaIngests(horariosList);
                     series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
                         @Override
                         public int get(DataPoint data) {
@@ -134,8 +127,19 @@ public class ScheduleStatsActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    series.setSpacing(25);
+
+                    String[] hrArr = new String[horariosList.size()];
+                    hrArr = horariosList.toArray(hrArr);
+                    StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                    staticLabelsFormatter.setHorizontalLabels(hrArr);
+                    graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+                    series.setSpacing(20);
                     series.setDrawValuesOnTop(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    graph.getViewport().setMinY(0);
+                    graph.getViewport().setMaxY(5);
+                    graph.getViewport().setMinX(horariosList.size());
+
                     graph.addSeries(series);
                 }
 
@@ -143,7 +147,7 @@ public class ScheduleStatsActivity extends AppCompatActivity {
 
 
 
-                populaIngests();
+                //populaIngests(horariosList);
                 int x = 0;
 
             }
@@ -157,12 +161,14 @@ public class ScheduleStatsActivity extends AppCompatActivity {
 
     }
 
-    public void populaIngests(){
+    public BarGraphSeries<DataPoint> populaIngests(List<String> horariosList){
         List<Ingestion> newIngestions = new ArrayList<>();
         Calendar cal = Calendar.getInstance();
         List<BasicDate> bsl = new ArrayList<>();
         Random randomNum = new Random();
-        Map treatedIngestMap = new HashMap();
+        List<List<Ingestion>> treatedList = new ArrayList();
+        HashMap ingestInfo = new HashMap();
+
         for(int i = 1 ; i <= 30 ; i++){
             Calendar temp = cal;
             temp.add(Calendar.DATE, i);
@@ -177,6 +183,47 @@ public class ScheduleStatsActivity extends AppCompatActivity {
             }
         }
 
-        int x = 0;
+        for(int i = 0 ; i < horariosList.size() ; i++){
+            List tmp = new ArrayList();
+            for(Ingestion in : newIngestions ){
+                String time = in.getTime();
+                String curHr = horariosList.get(i);
+                if(time == curHr){
+                    tmp.add(in);
+                }
+            }
+            treatedList.add(i, tmp);
+
+        }
+
+        List tempList = treatedList.get(0);
+
+        for(int i = 0 ; i < horariosList.size() ; i++){
+            int sum = 0;
+            float avg = 0;
+
+            List<Ingestion> tempInfoList = treatedList.get(i);
+            for(Ingestion in : tempInfoList){
+                sum += Integer.parseInt(in.getScore());
+            }
+            avg = (float)sum / (float)(tempInfoList.size());
+            ingestInfo.put(horariosList.get(i), df2.format(avg));
+        }
+
+        List<DataPoint> dplist = new ArrayList<>();
+
+
+
+        for(int i = 0 ; i < horariosList.size() ; i ++){
+            Double avg = Double.parseDouble((String) ingestInfo.get(horariosList.get(i)));
+            dplist.add(new DataPoint(i+1,avg));
+        }
+
+        DataPoint[] dparr = new DataPoint[dplist.size()];
+        dparr = dplist.toArray(dparr);
+
+        BarGraphSeries<DataPoint> populatedSeries = new BarGraphSeries<>(dparr);
+
+        return populatedSeries;
     }
 }
