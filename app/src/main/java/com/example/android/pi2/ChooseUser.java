@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.android.adapters.ChooseUserAdapter;
 import com.example.android.models.User;
+import com.example.android.util.InsertionSort;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,6 +55,7 @@ public class ChooseUser extends AppCompatActivity {
                     User user = ds.getValue(User.class);
                     depList.add(user);
                 }
+                InsertionSort.sort(depList);
                 adapter = new ChooseUserAdapter(ChooseUser.this, depList);
                 listUsersView.setAdapter(adapter);
 

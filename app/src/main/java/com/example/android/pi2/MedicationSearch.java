@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.android.adapters.MedicationAdapter;
 import com.example.android.models.Medication;
 import com.example.android.util.Api;
+import com.example.android.util.QuickSort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,8 @@ public class MedicationSearch extends AppCompatActivity {
                     double medPreco = med.getPreco();
                     medList.add(new Medication(med.getNome(), med.getpAtivo(), med.getLab(), med.getDesc(), med.gettClass(), med.getResctric(), med.getPreco()));
                 }
+
+                QuickSort.sort(medList, 0 , medList.size()-1);
                 medAdapter = new MedicationAdapter(MedicationSearch.this, medList, getIntent());
                 medRecView.setAdapter(medAdapter);
 

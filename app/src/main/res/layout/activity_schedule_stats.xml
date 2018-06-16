@@ -22,7 +22,9 @@
         android:id="@+id/schedGraph"
         android:layout_width="350dp"
         android:layout_height="200dp"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintTop_toBottomOf="@+id/schedNome"
         tools:ignore="MissingConstraints"
@@ -47,4 +49,24 @@
         android:layout_marginTop="77dp"
         android:text="TextView"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/aderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/startAder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-161dp"
+        android:text="Nível de aderência"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/startAder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="161dp"
+        android:text="25%"
+        android:textSize="40dp" />
 </RelativeLayout>

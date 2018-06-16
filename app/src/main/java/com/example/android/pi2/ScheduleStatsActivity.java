@@ -29,7 +29,7 @@ import java.util.Random;
 
 public class ScheduleStatsActivity extends AppCompatActivity {
 
-    TextView schedNome, schedEmtpy, schedMed;
+    TextView schedNome, schedEmtpy, schedMed, statAder;
 
     FirebaseDatabase database;
     FirebaseAuth mAuth;
@@ -61,6 +61,8 @@ public class ScheduleStatsActivity extends AppCompatActivity {
 
         schedMed = findViewById(R.id.schedMed);
         schedMed.setText(getIntent().getStringExtra("medname"));
+
+        statAder = findViewById(R.id.startAder);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -107,7 +109,7 @@ public class ScheduleStatsActivity extends AppCompatActivity {
                     graph.setVisibility(View.GONE);
                 }else{
 
-                    BarGraphSeries<DataPoint> series = populaIngests(horariosList);
+                    BarGraphSeries<DataPoint> series = populaIngests(horariosList, statAder);
                     series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
                         @Override
                         public int get(DataPoint data) {
@@ -161,7 +163,7 @@ public class ScheduleStatsActivity extends AppCompatActivity {
 
     }
 
-    public BarGraphSeries<DataPoint> populaIngests(List<String> horariosList){
+    public BarGraphSeries<DataPoint> populaIngests(List<String> horariosList, TextView ader){
         List<Ingestion> newIngestions = new ArrayList<>();
         Calendar cal = Calendar.getInstance();
         List<BasicDate> bsl = new ArrayList<>();
@@ -178,10 +180,31 @@ public class ScheduleStatsActivity extends AppCompatActivity {
 
         for(BasicDate basicD : bsl){
             for (String hr : horariosList){
+                String confirmation;
                 int randomScore = randomNum.nextInt(6) ;
-                newIngestions.add(new Ingestion(Integer.toString(randomScore), hr, basicD.formatedDate(), "", "1"));
+                int randomIngest = randomNum.nextInt(101);
+                if(randomIngest < 75){
+                    confirmation = "1";
+                }else{
+                    confirmation = "0";
+                }
+                newIngestions.add(new Ingestion(Integer.toString(randomScore), hr, basicD.formatedDate(), "", confirmation));
             }
         }
+
+        int totalConf = 0;
+
+        for(Ingestion in : newIngestions){
+            if(in.getConf() == "1"){
+                totalConf ++;
+            }
+        }
+
+
+        double aderencia = ((double) totalConf / (double) newIngestions.size()) * 100;
+        String aderenciaStr = String.format("%.2f", aderencia);
+
+        ader.setText(aderenciaStr+"%");
 
         for(int i = 0 ; i < horariosList.size() ; i++){
             List tmp = new ArrayList();
