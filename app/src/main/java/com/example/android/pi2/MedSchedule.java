@@ -147,9 +147,9 @@ public class MedSchedule extends AppCompatActivity {
                 }
 
                 /*TESTES*/
-                User user_teste = new User("Rodrigo", "Wehbe", "Masculino", "7:00", "22:00");
+                User user_teste = new User("Hellen", "Wehbe", "Masculino", "7:00", "22:00");
 
-                Medication med1 = new Medication("CANCIDA", "ACETATO DE CASPOFUNGINA", "ERCK SHARP & DOHME FARMACEUTICA  LTDA", "70 MG PO LIOF SOL INJ CT FA VD INC", "L02A3 - ANÁLOGOS HORMONA…DOTROFINAS CITOSTÁTICOS", "Não", 4247.26);
+                Medication med1 = new Medication("ACETATO DE CASPOFUNGINA", "ACETATO DE CASPOFUNGINA", "ERCK SHARP & DOHME FARMACEUTICA  LTDA", "70 MG PO LIOF SOL INJ CT FA VD INC", "L02A3 - ANÁLOGOS HORMONA…DOTROFINAS CITOSTÁTICOS", "Não", 4247.26);
 
                 List<BasicTime> hrs = new ArrayList<>();
                 hrs.add(new BasicTime(7, 50));

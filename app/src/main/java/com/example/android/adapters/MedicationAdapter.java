@@ -33,7 +33,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
     @Override
     public MedicationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.med_item_layout, null);
+        View view = inflater.inflate(R.layout.med_list_layout, null);
         MedicationViewHolder medHolder  = new MedicationViewHolder(view);
         return medHolder;
     }
@@ -44,7 +44,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
         holder.nomeView.setText(med.getNome());
         holder.pAtivoView.setText(med.getpAtivo());
         holder.descView.setText(med.getDesc());
-        holder.precoView.setText("R$ "+String.valueOf(med.getPreco()));
+        //holder.precoView.setText("R$ "+String.valueOf(med.getPreco()));
 
         holder.imgView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.medication));
 
@@ -90,11 +90,10 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
         ImageView imgView;
         TextView nomeView;
         TextView pAtivoView;
-        TextView descView;/*
-        TextView labView;
+        TextView descView;
         TextView tClassView;
-        TextView resctrictView;*/
-        TextView precoView;
+        TextView resctrictView;
+        //TextView precoView;
         TextView labView;
         LinearLayout itemParent;
 
@@ -106,7 +105,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
             nomeView = itemView.findViewById(R.id.medTitle);
             pAtivoView = itemView.findViewById(R.id.medAtivo);
             descView = itemView.findViewById(R.id.medDesc);
-            precoView = itemView.findViewById(R.id.medPreco);
+            //precoView = itemView.findViewById(R.id.medPreco);
             labView = itemView.findViewById(R.id.medLab);
 
             itemParent = itemView.findViewById(R.id.parentMedItem);

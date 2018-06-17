@@ -2,6 +2,7 @@ package com.example.android.pi2;
 
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -157,5 +158,7 @@ public class CadastroUser extends AppCompatActivity {
 
         User user_insert = new User(nome, sobrenome, sexo, hrAcorda, hrDorme);
         users.child(uid).setValue(user_insert);
+
+        startActivity(new Intent(CadastroUser.this, MenuActivity.class));
     }
 }
