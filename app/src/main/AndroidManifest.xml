@@ -63,7 +63,8 @@
 
         <activity android:name=".IngestionActivity" />
         <activity android:name=".UserStatsActivity" />
-        <activity android:name=".ScheduleStatsActivity"></activity>
+        <activity android:name=".ScheduleStatsActivity" />
+        <activity android:name=".MedicationInformationActivity"></activity>
     </application>
 
 </manifest>

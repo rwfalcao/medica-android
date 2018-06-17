@@ -9,7 +9,7 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.adapters.MedicationAdapter;
+import com.example.android.adapters.ChooseMedicationAdapter;
 import com.example.android.models.Medication;
 import com.example.android.util.Api;
 
@@ -28,7 +28,7 @@ public class ScheduleMedicationActivity extends AppCompatActivity {
 
     EditText filterText;
     List<Medication> medList;
-    MedicationAdapter medAdapter;
+    ChooseMedicationAdapter medAdapter;
     RecyclerView medRecView;
 
     @Override
@@ -63,7 +63,7 @@ public class ScheduleMedicationActivity extends AppCompatActivity {
                     double medPreco = med.getPreco();
                     medList.add(new Medication(med.getNome(), med.getpAtivo(), med.getLab(), med.getDesc(), med.gettClass(), med.getResctric(), med.getPreco()));
                 }
-                medAdapter = new MedicationAdapter(ScheduleMedicationActivity.this, medList, getIntent());
+                medAdapter = new ChooseMedicationAdapter(ScheduleMedicationActivity.this, medList, getIntent());
                 medRecView.setAdapter(medAdapter);
 
                 filterText.addTextChangedListener(new TextWatcher() {
@@ -91,7 +91,7 @@ public class ScheduleMedicationActivity extends AppCompatActivity {
                             }
                         }
 
-                        medAdapter = new MedicationAdapter(ScheduleMedicationActivity.this, tempList, getIntent());
+                        medAdapter = new ChooseMedicationAdapter(ScheduleMedicationActivity.this, tempList, getIntent());
                         medRecView.setAdapter(medAdapter);
                     }
                 });

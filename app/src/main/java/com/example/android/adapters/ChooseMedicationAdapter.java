@@ -9,22 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.models.Medication;
 import com.example.android.pi2.ConfirmaScheduleActivity;
-import com.example.android.pi2.MedicationInformationActivity;
 import com.example.android.pi2.R;
 
 import java.util.List;
 
-public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.MedicationViewHolder>{
+public class ChooseMedicationAdapter extends RecyclerView.Adapter<ChooseMedicationAdapter.MedicationViewHolder>{
 
     private Context mCtx;
     private List<Medication> medList;
     private  Intent medIntent;
 
-    public MedicationAdapter(Context mCtx, List<Medication> medList, Intent it) {
+    public ChooseMedicationAdapter(Context mCtx, List<Medication> medList, Intent it) {
         this.mCtx = mCtx;
         this.medList = medList;
         this.medIntent = it;
@@ -54,7 +52,7 @@ public class MedicationAdapter extends RecyclerView.Adapter<MedicationAdapter.Me
 
 
 
-                Intent it = new Intent(mCtx, MedicationInformationActivity.class);
+                Intent it = new Intent(mCtx, ConfirmaScheduleActivity.class);
                 it.putExtra("medName", med.getNome());
                 it.putExtra("ativo", med.getpAtivo());
                 it.putExtra("lab", med.getLab());

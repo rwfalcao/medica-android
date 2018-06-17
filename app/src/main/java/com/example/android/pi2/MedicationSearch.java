@@ -6,9 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -123,30 +120,6 @@ public class MedicationSearch extends AppCompatActivity {
                     }
                 });
 
-                /*PENSAR NISSO*/
-                /*filterText.setOnKeyListener(new View.OnKeyListener() {
-                    @Override
-                    public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                        String query = filterText.getText().toString();
-
-                        List<Medication> tempList = new ArrayList<>();
-
-                        for(Medication tempMed:medList){
-                            if(tempMed.getNome().toLowerCase().contains(query.toLowerCase())){
-                                tempList.add(tempMed);
-                            }else if(query.matches("")){
-                                tempList = medList;
-                            }
-                        }
-
-                        medAdapter = new MedicationAdapter(MedicationSearch.this, tempList);
-                        medRecView.setAdapter(medAdapter);
-
-
-                        return false;
-                    }
-                });*/
-                /*PENSAR NISSO*/
             }
 
             @Override
